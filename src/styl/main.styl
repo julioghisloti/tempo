@@ -1,0 +1,71 @@
+// Main File //
+
+	//nib
+	@import 'nib'
+	
+	//jeet
+	@import 'jeet'
+
+	body
+		margin 0
+		overflow hidden
+		
+		.mc-image
+			background-size 120%
+			display block
+			left 0px
+			opacity(0.8)
+			position absolute
+			transform(scale(1.09))
+			top 0px 
+			-webkit-filter blur(30px)
+				
+		.content
+			align(both)
+			background-color rgba(255, 255, 255, 0.6)
+			border-radius(5px)
+			box-shadow(0 0 10px rgba(0, 0, 0, 0.07))
+			height 500px
+			width 850px
+			
+			.image
+				background-size 100%
+				border-radius(5px 5px 0 0)
+				height 360px
+				width 100%
+				
+				.input
+					position absolute
+					
+					input[type="text"]
+						background url()
+						border 0
+						color #fff
+						font-family 'Lato'
+						font-size 3em
+						font-weight bold
+						text-shadow 1px 1px 5px rgba(0, 0, 0, 0.28)
+						margin 40px
+						outline none
+						
+					::-webkit-input-placeholder
+						color #fff
+						
+			.forecast
+				height 140px
+				position relative
+				width 100%
+				
+
+				.day
+					box-shadow(0 -1px 0 rgba(0, 0, 0, 0.13))
+					span(1/5)
+					height 140px
+					
+					&:first-child
+						background-color rgba(0, 0, 0, 0.11)
+						border-radius(0 0 0 5px)
+						
+					&:last-child
+						border-radius(0 0 5px 0)
+						
