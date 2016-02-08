@@ -37,8 +37,13 @@ $(document).ready(function(){
 					$('.image').css('background-image', 'url('+ imgUrl +')');
 				});
 			},
-			complete: function(){
+			complete: function(data){
 				$('.loading').fadeOut();
+
+				if(data.responseJSON.photos.total == 0){
+					$('.mc-image').css('background-image', 'url()');
+					$('.image').css('background-image', 'url(https://i0.wp.com/farm4.static.flickr.com/3336/3293815044_ae2a35f376_o.jpg)');
+				}
 			}
 		})
 	}
