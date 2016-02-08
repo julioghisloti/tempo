@@ -12,36 +12,49 @@
 
 	<!-- Style -->
 	<link rel="stylesheet" href="build/css/main.css">
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="build/js/jquery.maximage.js"></script>
-	<script src="build/js/jquery.cycle.all.js"></script>
-	<script src="build/js/flickrapi.js"></script>
-	<script src="build/js/main.js"></script>
+
+	<!-- Handlebars -->
+	<script src="bower_components/handlebars/handlebars.js"></script>
 
 </head>
 <body>
 
+	<script id="weather-template" type="text/x-handlebars-template">
+		<div class="day">
+			<h3>{{day}}</h3>
+
+			<div class="min_max">
+				<h4><span>min </span>{{low}}º</h4>
+				<h4><span>max </span>{{high}}º</h4>
+			</div>
+
+			<h5>{{date}}</h5>
+		</div>
+	</script>
+
+	<div class="loading"></div>
+
 	<div class="mc-image"></div>
 
-
-	<!-- content -->
-		<div class="content">
-			<div class="image">
-				
-				<div class="input">
-					<input type="text" name="location" id="location" placeholder="New York, NY" />
-					<a id="change" href="#">Change</a>
-				</div>
-
+	<div id="main" class="content">
+		<div class="image">
+			
+			<div class="input">
+				<form action="#" method="post" id="location-form">
+					<input type="text" name="location" id="location" placeholder="New York, NY" autocomplete="off" autofocus/>
+					<input type="submit" value="Change">
+				</form>
 			</div>
 
-			<div class="forecast">
-				
-			</div>
 		</div>
-	<!-- /content -->
-		
+		<div class="forecast"></div>
+	</div>
+	
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="build/js/jquery.maximage.js"></script>
+	<script src="build/js/jquery.cycle.all.js"></script>
+	<script src="build/js/main.js"></script>
+		
 </body>
 </html>
