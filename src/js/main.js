@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$('input[type="input"]').focus();	
+	$('input[type="input"]').focus();
 	
 	var raw_template = $('#weather-template').html();	
 	var template = Handlebars.compile(raw_template);
@@ -14,8 +14,6 @@ $(document).ready(function(){
 		$('.forecast').empty();
 		var location = $('#location').val();
 		weather(location);
-
-		$('.input::before').hide();
 	});
 
 	function flickr(lat, long) {
@@ -33,6 +31,9 @@ $(document).ready(function(){
 					$('.mc-image').css('background-image', 'url('+ imgUrl +')');
 					$('.image').css('background-image', 'url('+ imgUrl +')');
 				});
+			},
+			complete: function(){
+				$('.loading').fadeOut();
 			}
 		})
 	}
@@ -42,8 +43,6 @@ $(document).ready(function(){
 			type: 'GET',
 			url: 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '") and u="c" &format=json',
 			success: function(data){
-				console.log(data);
-
 				if(data.query.results.channel.item != 'City not found'){
 					$.each(data.query.results.channel.item.forecast, function(index, show){
 						if(index == 0){
@@ -59,10 +58,6 @@ $(document).ready(function(){
 
 					flickr(lat, long);
 				}
-				
-			},
-			complete: function(){
-				$('.loading').fadeOut();
 			}
 		});	
 	}
