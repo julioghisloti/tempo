@@ -16,6 +16,11 @@ $(document).ready(function(){
 		weather(location);
 	});
 
+	$('.city-error').on('click', function(){
+		weather("New York, NY");
+		$(this).fadeOut();
+	});
+
 	function flickr(lat, long) {
 		$.ajax({
 			type: 'GET',
@@ -43,20 +48,26 @@ $(document).ready(function(){
 			type: 'GET',
 			url: 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '") and u="c" &format=json',
 			success: function(data){
-				if(data.query.results.channel.item != 'City not found'){
+				if(data.query.results.channel.item.title != 'City not found'){
 					$.each(data.query.results.channel.item.forecast, function(index, show){
 						if(index == 0){
 							show.day = 'Today';	
 						}
 
+						var city = data.query.results.channel.title.split('-');
+						$('#location').val('').attr('placeholder', city[1]);
 						var html = template(show);
 						placeHolder.append(html);
-					});	
+					});
 
 					var lat = data.query.results.channel.item.lat;
 					var long = data.query.results.channel.item.long;
 
 					flickr(lat, long);
+				}else{
+
+					$('.city-error').fadeIn();
+
 				}
 			}
 		});	
